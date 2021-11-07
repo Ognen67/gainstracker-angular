@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="workoutListTitle">Workout List</h1>
+  <div class="workoutList" *ngIf="workoutList">
+    <div *ngFor="let workout of workoutList">
+      <workout class="workout" [workout]="workout" (refresh)="this.refresh()"></workout>
+    </div>
+  </div>
+</div>

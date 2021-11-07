@@ -1,0 +1,27 @@
+.container {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.exerciseTitle {
+  color: dodgerblue;
+}
+
+.sets {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.deleteButton {
+  outline: none;
+}
+
+.table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}

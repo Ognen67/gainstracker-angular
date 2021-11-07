@@ -1,0 +1,37 @@
+<mat-card>
+  <div *ngIf="workout">
+    <div class="workout">
+      <mat-card-title>{{workout.name}}</mat-card-title>
+      <h3>Exercises:</h3>
+      <div class="exercises">
+        <div *ngIf="workout.exercises">
+          <div *ngFor="let exercise of workout.exercises">
+            <h2 class="exerciseTitle">{{exercise.name}}</h2>
+            <add-set [workoutId]="workout.id" (refresh)="this.refresh.emit(true)" [exerciseId]="exercise.id"></add-set>
+            <div class="sets">
+              <table class="table">
+                <tr>
+                  <th>Set</th>
+                  <th>KG</th>
+                  <th>Reps</th>
+                  <th></th>
+                </tr>
+                <tr *ngFor="let set of exercise.sets; let i = index">
+                  <td>{{i + 1}}</td>
+                  <td>{{set.weight}}</td>
+                  <td>{{set.reps}}</td>
+                  <td>
+                    <button mat-raised-button color=warn (click)="deleteSet(exercise.id, set.id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <add-exercise [workoutId]="workout.id" [exerciseTemplates]="exerciseTemplates" (refresh)="refresh.emit(true)"></add-exercise>
+    </div>
+  </div>
+</mat-card>

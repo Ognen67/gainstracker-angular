@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Start a new workout</mat-card-title>
+    <div>
+      <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label for="name">Name</mat-label>
+          <input matInput id="name" required type="text" formControlName="name">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Add Workout</button>
+      </form>
+    </div>
+  </mat-card>
+</div>
+
+<div class="container">
+  <mat-card>
+    <mat-card-title>Choose from templates</mat-card-title>
+    <div>
+      <form [formGroup]="chooseTemplateForm" (ngSubmit)="onTemplateSubmit()">
+        <mat-form-field>
+          <mat-label for="name">Name</mat-label>
+          <!--          <input matInput id="name" required type="text" formControlName="name">-->
+          <mat-select formControlName="name">
+            <mat-option id="name" *ngFor="let workoutTemplate of workoutTemplates" [value]="workoutTemplate.name">
+              {{workoutTemplate.name}}
+<!--              <ul>-->
+<!--                <li *ngFor="let exercise of workoutTemplate.exercises">-->
+<!--                  {{exercise.name}}-->
+<!--                </li>-->
+<!--              </ul>-->
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Add Workout</button>
+      </form>
+    </div>
+  </mat-card>
+</div>

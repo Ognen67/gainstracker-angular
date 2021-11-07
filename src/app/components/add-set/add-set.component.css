@@ -1,0 +1,7 @@
+.form {
+  display: flex;
+}
+
+.submitButton {
+  height: fit-content;
+}

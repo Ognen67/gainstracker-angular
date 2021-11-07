@@ -1,0 +1,14 @@
+.container {
+  text-align: center;
+}
+
+.templateContainer {
+  width: fit-content;
+  margin: 10px;
+}
+
+.templates {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}

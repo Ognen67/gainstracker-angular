@@ -1,0 +1,16 @@
+<h3>Add exercise</h3>
+<form [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field>
+      <mat-label for="name">Name</mat-label>
+<!--      <input matInput id="name" required type="text" formControlName="name">-->
+      <mat-select formControlName="name">
+        <mat-option id="name" *ngFor="let exercise of exerciseTemplates" [value]="exercise.name" >
+          {{exercise.name}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit">Add Exercise</button>
+</form>

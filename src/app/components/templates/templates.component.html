@@ -1,0 +1,67 @@
+<div class="container">
+
+  <h1>Template Management</h1>
+  <div class="exerciseManagement">
+    <h3>Add Exercise Template</h3>
+
+    <form [formGroup]="exerciseForm" (ngSubmit)="onExerciseTemplateSubmit()">
+      <mat-form-field>
+        <mat-label for="name">Exercise Name</mat-label>
+        <input matInput id="name" required type="text" formControlName="name">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit">Add Exercise Template</button>
+    </form>
+
+  </div>
+
+  <div class="workoutManagement">
+    <h3>Add Workout Template</h3>
+
+    <form [formGroup]="workoutForm" (ngSubmit)="onWorkoutTemplateSubmit()">
+      <mat-form-field>
+        <mat-label for="workoutName">Workout Name</mat-label>
+        <input matInput id="workoutName" required type="text" formControlName="name">
+      </mat-form-field>
+
+      <mat-select formControlName="exerciseName">
+        <mat-option id="exerciseName" *ngFor="let exercise of exerciseTemplates" [value]="exercise.name">
+          {{exercise.name}}
+        </mat-option>
+      </mat-select>
+
+      <br>
+      <button mat-raised-button color="primary" type="submit">Add Workout Template</button>
+    </form>
+
+  </div>
+
+</div>
+
+<div class="templates">
+
+  <div class="templateContainer">
+    <mat-card>
+    <h1>Exercise Templates</h1>
+      <div *ngFor="let exerciseTemplate of exerciseTemplates">
+        <h3>{{exerciseTemplate.name}}</h3><br>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="templateContainer">
+    <mat-card>
+    <h1>Workout Templates</h1>
+      <div *ngFor="let workoutTemplate of workoutTemplates">
+        <h3>{{workoutTemplate.name}}</h3><br>
+        <ul>
+          <li *ngFor="let exericses of workoutTemplate.exercises ">
+            {{exericses.name}}
+          </li>
+        </ul>
+      </div>
+    </mat-card>
+  </div>
+
+</div>
+

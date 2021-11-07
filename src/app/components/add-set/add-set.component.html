@@ -1,0 +1,26 @@
+<h4>Add Set</h4>
+<form [formGroup]="setForm" (ngSubmit)="onSubmit()">
+  <div class="form">
+
+    <mat-form-field>
+      <mat-label for="weight">Weight</mat-label>
+<!--      <mat-slider vertical min = "10" max = "120" step = "2.5" value = "60" thumbLabel tickInterval="auto" formControlName="weight"></mat-slider>-->
+      <input matInput id="weight" required type="text" formControlName="weight">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="reps">Reps</mat-label>
+      <input matInput id="reps" required type="text" formControlName="reps">
+    </mat-form-field>
+
+
+
+    <button mat-raised-button color="primary" class="submitButton" type="submit">
+    <mat-icon type="submit">check_circle</mat-icon>
+  </button>
+
+  </div>
+
+</form>
+
+
