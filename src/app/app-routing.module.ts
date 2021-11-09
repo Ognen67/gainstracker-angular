@@ -5,6 +5,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {AddWorkoutComponent} from "./components/add-workout/add-workout.component";
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {TemplatesComponent} from "./components/templates/templates.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path: 'workout/:id', component: WorkoutComponent},
   {path: 'add-workout', component: AddWorkoutComponent},
   {path: 'templates', component: TemplatesComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
 ];
 
 @NgModule({

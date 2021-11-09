@@ -19,41 +19,58 @@
     <h3>Add Workout Template</h3>
 
     <form [formGroup]="workoutForm" (ngSubmit)="onWorkoutTemplateSubmit()">
+
       <mat-form-field>
         <mat-label for="workoutName">Workout Name</mat-label>
         <input matInput id="workoutName" required type="text" formControlName="name">
       </mat-form-field>
-
-      <mat-select formControlName="exerciseName">
-        <mat-option id="exerciseName" *ngFor="let exercise of exerciseTemplates" [value]="exercise.name">
-          {{exercise.name}}
-        </mat-option>
-      </mat-select>
-
       <br>
+
+
+      <div formArrayName="exercises" *ngFor="let exercise of exercises.controls; last as isLast; index as i">
+          <mat-form-field>
+            <mat-label for="exerciseName">Exercise Name</mat-label>
+            <mat-select [formControlName]="i">
+              <mat-option id="exerciseName" *ngFor="let exercise of exerciseTemplates" [value]="exercise.name">
+                {{exercise.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-icon-button color="warn" (click)="deleteExercise(i)" *ngIf="exercises.length > 1">
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" *ngIf="isLast" (click)="addExercise()">
+            <mat-icon>add_circle</mat-icon>
+          </button>
+      </div>
+
       <button mat-raised-button color="primary" type="submit">Add Workout Template</button>
+
+      <h2>Form Value</h2>
+      <div>{{exercises.valueChanges | async | json}}</div>
+
     </form>
 
-  </div>
 
+  </div>
 </div>
 
 <div class="templates">
 
   <div class="templateContainer">
     <mat-card>
-    <h1>Exercise Templates</h1>
+      <h1>Exercise Templates</h1>
       <div *ngFor="let exerciseTemplate of exerciseTemplates">
-        <h3>{{exerciseTemplate.name}}</h3><br>
+        <h3>{{exerciseTemplate.name}}</h3>
       </div>
     </mat-card>
   </div>
 
   <div class="templateContainer">
     <mat-card>
-    <h1>Workout Templates</h1>
+      <h1>Workout Templates</h1>
       <div *ngFor="let workoutTemplate of workoutTemplates">
-        <h3>{{workoutTemplate.name}}</h3><br>
+        <h3>{{workoutTemplate.name}}</h3>
         <ul>
           <li *ngFor="let exericses of workoutTemplate.exercises ">
             {{exericses.name}}

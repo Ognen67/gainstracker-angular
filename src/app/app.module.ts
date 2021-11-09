@@ -21,6 +21,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSelectModule} from "@angular/material/select";
 import { TemplatesComponent } from './components/templates/templates.component';
 import {MatSliderModule} from "@angular/material/slider";
+import { WorkoutSessionComponent } from './components/workout-session/workout-session.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,10 @@ import {MatSliderModule} from "@angular/material/slider";
     AddSetComponent,
     AddExerciseComponent,
     HeaderComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    WorkoutSessionComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,8 @@ import {MatSliderModule} from "@angular/material/slider";
     MatIconModule,
     MatTableModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

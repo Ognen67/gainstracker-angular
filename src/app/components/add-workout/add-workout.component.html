@@ -23,13 +23,8 @@
           <mat-label for="name">Name</mat-label>
           <!--          <input matInput id="name" required type="text" formControlName="name">-->
           <mat-select formControlName="name">
-            <mat-option id="name" *ngFor="let workoutTemplate of workoutTemplates" [value]="workoutTemplate.name">
+            <mat-option id="name" *ngFor="let workoutTemplate of workoutTemplates" [value]="workoutTemplate.id">
               {{workoutTemplate.name}}
-<!--              <ul>-->
-<!--                <li *ngFor="let exercise of workoutTemplate.exercises">-->
-<!--                  {{exercise.name}}-->
-<!--                </li>-->
-<!--              </ul>-->
             </mat-option>
           </mat-select>
         </mat-form-field>

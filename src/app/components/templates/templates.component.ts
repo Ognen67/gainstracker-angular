@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {Form, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {WorkoutService} from "../../service/workout.service";
 import {ExerciseTemplate} from "../../model/ExerciseTemplate";
 import {Router} from "@angular/router";
@@ -18,7 +18,7 @@ export class TemplatesComponent implements OnInit {
 
   workoutForm = this.formBuilder.group({
     name: ['', Validators.required],
-    exercises: [''],
+    exercises: this.formBuilder.array([this.formBuilder.control('')]),
   });
 
   exerciseTemplates: ExerciseTemplate[] | undefined;
@@ -39,16 +39,12 @@ export class TemplatesComponent implements OnInit {
   getAllExerciseTemplates() {
     return this.workoutService.getAllExerciseTemplates().subscribe(res => {
       this.exerciseTemplates = res;
-
-      console.log(this.exerciseTemplates)
     })
   }
 
   getAllWorkoutTemplates() {
     return this.workoutService.getAllWorkoutTemplates().subscribe(res => {
       this.workoutTemplates = res;
-
-      console.log(this.workoutTemplates)
     })
   }
 
@@ -60,12 +56,34 @@ export class TemplatesComponent implements OnInit {
     this.router.navigate(['templates'])
   }
 
-
   onWorkoutTemplateSubmit() {
-    this.workoutService.addWorkoutTemplate(this.exerciseForm.value).subscribe(res => {
+    console.log(this.workoutForm.value)
+
+    this.workoutService.addWorkoutTemplate(this.workoutForm.value).subscribe(res => {
       console.log(res)
     })
-    this.exerciseForm.reset();
+    this.workoutForm.reset();
     this.router.navigate(['templates'])
+  }
+
+  get name() {
+    return this.workoutForm.controls["name"] as FormControl
+  }
+
+  get exercises() {
+    return this.workoutForm.controls["exercises"] as FormArray
+  }
+
+  addExercise() {
+    // const exercisesForm = this.formBuilder.group({
+    //   exerciseName: ['', Validators.required]
+    // })
+    // this.exercises.push(exercisesForm)
+
+    this.exercises.push(this.formBuilder.control(''))
+  }
+
+  deleteExercise(i: number) {
+    this.exercises.removeAt(i);
   }
 }

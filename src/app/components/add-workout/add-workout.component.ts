@@ -42,7 +42,11 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   onTemplateSubmit() {
+    console.log(this.chooseTemplateForm.value.name)
 
+    this.workoutService.startWorkoutFromTemplate(this.chooseTemplateForm.value.name).subscribe(res => {
+      console.log(res)
+    })
   }
 
   getAllWorkoutTemplates() {
