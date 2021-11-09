@@ -62,6 +62,6 @@ export class WorkoutService {
   }
 
   startWorkoutFromTemplate(workoutTemplateId: String) {
-    return this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`, this.httpOptions)
+    return this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
   }
 }

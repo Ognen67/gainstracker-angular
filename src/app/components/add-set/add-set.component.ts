@@ -15,7 +15,7 @@ export class AddSetComponent implements OnInit {
   @Output() refresh: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   setForm = this.formBuilder.group({
-    reps: ['', Validators.required, Validators.minLength(1)],
+    reps: ['', Validators.required],
     weight: ['', Validators.required]
   });
 

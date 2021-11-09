@@ -12,13 +12,17 @@ import {WorkoutTemplate} from "../../model/WorkoutTemplate";
 })
 export class TemplatesComponent implements OnInit {
 
-  exerciseForm = this.formBuilder.group({
+  exerciseForm = this.fb.group({
     name: ['', Validators.required],
   });
 
-  workoutForm = this.formBuilder.group({
+  workoutForm = this.fb.group({
     name: ['', Validators.required],
-    exercises: this.formBuilder.array([this.formBuilder.control('')]),
+    exercises: this.fb.array([
+      this.fb.group({
+        name: ['', Validators.required]
+      })
+    ]),
   });
 
   exerciseTemplates: ExerciseTemplate[] | undefined;
@@ -26,7 +30,7 @@ export class TemplatesComponent implements OnInit {
 
   constructor(
     private workoutService: WorkoutService,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private router: Router
   ) {
   }
@@ -49,11 +53,23 @@ export class TemplatesComponent implements OnInit {
   }
 
   onExerciseTemplateSubmit() {
-    this.workoutService.addExerciseTemplate(this.exerciseForm.value).subscribe(res => {
-      console.log(res)
-    })
-    this.exerciseForm.reset();
-    this.router.navigate(['templates'])
+    console.log(this.exerciseForm.value)
+    if (this.exerciseForm.value.name == "Chest Press") {
+      if (confirm("Did you mean \"Bench Press\"?")) {
+        this.exerciseForm.value.name = "Bench Press"
+        this.workoutService.addExerciseTemplate(this.exerciseForm.value).subscribe(res => {
+          console.log(res)
+        })
+        this.exerciseForm.reset();
+        this.router.navigate(['templates'])
+      }
+    } else {
+      this.workoutService.addExerciseTemplate(this.exerciseForm.value).subscribe(res => {
+        console.log(res)
+      })
+      this.exerciseForm.reset();
+      this.router.navigate(['templates'])
+    }
   }
 
   onWorkoutTemplateSubmit() {
@@ -80,7 +96,11 @@ export class TemplatesComponent implements OnInit {
     // })
     // this.exercises.push(exercisesForm)
 
-    this.exercises.push(this.formBuilder.control(''))
+    const exGroup = this.fb.group({
+      name: ['', Validators.required]
+    })
+
+    this.exercises.push(exGroup)
   }
 
   deleteExercise(i: number) {
