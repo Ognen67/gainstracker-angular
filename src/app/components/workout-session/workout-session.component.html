@@ -1,1 +1,41 @@
-<p>workout-session works!</p>
+<div class="container">
+  <mat-card>
+    <div *ngIf="workout$ | async as workout">
+      <div class="workout">
+        <stopwatch [start]="true" [showTimerControls]="true"></stopwatch>
+        <mat-card-title class="workoutTitle">{{workout.name}}</mat-card-title>
+        <h3>Exercises:</h3>
+        <div class="exercises">
+          <div *ngIf="workout.exercises">
+            <div *ngFor="let exercise of workout.exercises">
+              <h2 class="exerciseTitle">{{exercise.name}}</h2>
+              <add-set [workoutId]="workout.id" (refresh)="this.refresh.emit(true)" [exerciseId]="exercise.id"></add-set>
+              <div class="sets">
+                <table class="table" *ngIf="exercise.sets.length > 0">
+                  <tr>
+                    <th>Set</th>
+                    <th>Reps</th>
+                    <th>KG</th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let set of exercise.sets; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{set.reps}}</td>
+                    <td>{{set.weight}}</td>
+                    <td>
+                      <button mat-raised-button color=warn (click)="deleteSet(exercise.id, set.id)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <add-exercise [workoutId]="workout.id" [exerciseTemplates]="exerciseTemplates" (refresh)="refresh.emit(true)"></add-exercise>
+      </div>
+    </div>
+        <button class="finishWorkoutButton" mat-raised-button color="primary">Finish Workout</button>
+  </mat-card>
+</div>

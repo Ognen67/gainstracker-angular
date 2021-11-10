@@ -7,6 +7,7 @@ import {HomePageComponent} from "./components/home-page/home-page.component";
 import {TemplatesComponent} from "./components/templates/templates.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {WorkoutSessionComponent} from "./components/workout-session/workout-session.component";
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'templates', component: TemplatesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'session/:id', component: WorkoutSessionComponent},
 ];
 
 @NgModule({

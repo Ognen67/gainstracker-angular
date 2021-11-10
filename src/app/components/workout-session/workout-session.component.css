@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.workoutTitle {
+  text-align: center;
+}
+
+.exerciseTitle {
+  color: dodgerblue;
+}
+
+.sets {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.deleteButton {
+  outline: none;
+}
+
+.table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
+
+.finishWorkoutButton {
+  width: 420px;
+  margin: 10px;
+}

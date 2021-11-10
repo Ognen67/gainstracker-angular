@@ -25,6 +25,7 @@ import { WorkoutSessionComponent } from './components/workout-session/workout-se
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { StopwatchComponent } from './components/stopwatch/stopwatch.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegisterComponent } from './components/register/register.component';
     TemplatesComponent,
     WorkoutSessionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StopwatchComponent
   ],
   imports: [
     BrowserModule,

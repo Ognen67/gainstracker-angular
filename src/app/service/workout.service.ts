@@ -25,8 +25,12 @@ export class WorkoutService {
     return this.http.get<Workout[]>(`${this.baseUrl}/workouts`, this.httpOptions)
   }
 
-  getWorkoutById(workoutId: number): Observable<Workout> {
+  getWorkoutById(workoutId: number | undefined): Observable<Workout> {
     return this.http.get<Workout>(`${this.baseUrl}/workouts/${workoutId}`, this.httpOptions)
+  }
+
+  getWorkoutByName(name: String): Observable<Workout> {
+    return this.http.get<Workout>(`${this.baseUrl}/workouts/${name}`, this.httpOptions)
   }
 
   addWorkout(workoutName: String) {
@@ -61,7 +65,8 @@ export class WorkoutService {
     return this.http.post(`${this.baseUrl}/workout-templates`, workoutName, this.httpOptions)
   }
 
-  startWorkoutFromTemplate(workoutTemplateId: String) {
-    return this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
+  startWorkoutFromTemplate(workoutTemplateId: String): Observable<Workout> {
+    return <Observable<Workout>> this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
   }
+
 }

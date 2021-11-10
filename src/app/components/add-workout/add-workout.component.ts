@@ -42,11 +42,14 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   onTemplateSubmit() {
-    console.log(this.chooseTemplateForm.value.name)
 
     this.workoutService.startWorkoutFromTemplate(this.chooseTemplateForm.value.name).subscribe(res => {
-      console.log(res)
+      console.log("Start from template" + res)
     })
+    this.workoutService.getWorkoutById(this.chooseTemplateForm.value.name).subscribe(res => {
+      console.log("Get workout by id" + res)
+    });
+    this.router.navigate(['session/', this.chooseTemplateForm.value.name])
   }
 
   getAllWorkoutTemplates() {

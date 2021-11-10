@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Workout} from "../../model/Workout";
 import {WorkoutService} from "../../service/workout.service";
 import {ExerciseTemplate} from "../../model/ExerciseTemplate";
+import {ActivatedRoute, Route} from "@angular/router";
 
 @Component({
   selector: 'workout',
@@ -14,7 +15,8 @@ export class WorkoutComponent implements OnInit {
   exerciseTemplates: ExerciseTemplate[] | undefined
   @Output() refresh: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private workoutService: WorkoutService) { }
+  constructor(private workoutService: WorkoutService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAllExerciseTemplates();
