@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {interval} from "rxjs";
 
 @Component({
@@ -10,11 +10,12 @@ export class StopwatchComponent implements OnInit {
 
   clock: any;
   minutes: any = '00';
-  seconds: any = '00';
+  public seconds: any = '00';
   milliseconds: any = '00';
 
   @Input() start: boolean | undefined;
   @Input() showTimerControls: boolean | undefined;
+  @Output() time: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
 
@@ -88,7 +89,12 @@ export class StopwatchComponent implements OnInit {
   ngOnDestroy() {
     clearInterval(this.timerRef);
   }
+
   ngOnInit() {
+  }
+
+  public showTime() {
+    this.time.emit(5)
   }
 
 

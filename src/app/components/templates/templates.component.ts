@@ -53,7 +53,7 @@ export class TemplatesComponent implements OnInit {
   }
 
   onExerciseTemplateSubmit() {
-    console.log(this.exerciseForm.value)
+
     if (this.exerciseForm.value.name == "Chest Press") {
       if (confirm("Did you mean \"Bench Press\"?")) {
         this.exerciseForm.value.name = "Bench Press"

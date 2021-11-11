@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Workout} from "../model/Workout";
 import {ExerciseTemplate} from "../model/ExerciseTemplate";
 import {WorkoutTemplate} from "../model/WorkoutTemplate";
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,16 @@ export class WorkoutService {
 
   baseUrl = 'http://localhost:8080/api'
 
+  private _refreshNeeded$ = new Subject<void>()
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa('cepep91128@datakop.com:qwerty')
+      'Authorization': 'Basic ' + btoa('sehawa2511@gyn5.com:qwerty')
     })
   };
 
@@ -39,6 +46,11 @@ export class WorkoutService {
 
   addSetForWorkout(workoutId: number | undefined, exerciseId: number | undefined, value: any) {
     return this.http.post(`${this.baseUrl}/workouts/${workoutId}/exercise/${exerciseId}`, value, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+      )
   }
 
   addExerciseForWorkout(workoutId: number | undefined, value: any) {
@@ -55,6 +67,11 @@ export class WorkoutService {
 
   addExerciseTemplate(exerciseName: String) {
     return this.http.post(`${this.baseUrl}/exercise-templates`, exerciseName, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+      )
   }
 
   getAllWorkoutTemplates(): Observable<WorkoutTemplate[]> {
@@ -63,10 +80,22 @@ export class WorkoutService {
 
   addWorkoutTemplate(workoutName: String) {
     return this.http.post(`${this.baseUrl}/workout-templates`, workoutName, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this._refreshNeeded$.next();
+        })
+      )
   }
 
   startWorkoutFromTemplate(workoutTemplateId: String): Observable<Workout> {
     return <Observable<Workout>> this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
   }
 
+  saveTimeForWorkout(workoutId: number | undefined, time: String) {
+    return this.http.post(`${this.baseUrl}/workouts/saveTime/${workoutId}`, time, this.httpOptions)
+  }
+
+  getAllFinishedWorkouts(): Observable<Workout[]> {
+    return this.http.get<Workout[]>(`${this.baseUrl}/workouts`, this.httpOptions)
+  }
 }

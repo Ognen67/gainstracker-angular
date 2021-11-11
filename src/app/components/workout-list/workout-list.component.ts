@@ -11,7 +11,6 @@ export class WorkoutListComponent implements OnInit {
 
   workoutList: Workout[] | undefined
 
-
   constructor(private workoutService: WorkoutService) { }
 
   ngOnInit(): void {
@@ -19,8 +18,13 @@ export class WorkoutListComponent implements OnInit {
   }
 
   refresh(): void {
-    this.workoutService.getAllWorkouts().subscribe(res => {
-      this.workoutList = res
+    // this.workoutService.getAllWorkouts().subscribe(res => {
+    //   this.workoutList = res
+    // })
+
+    this.workoutService.getAllFinishedWorkouts().subscribe(res => {
+      this.workoutList = res;
+      console.log(this.workoutList)
     })
   }
 

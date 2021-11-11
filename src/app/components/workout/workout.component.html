@@ -1,8 +1,11 @@
 <mat-card>
   <div *ngIf="workout">
     <div class="workout">
+      <div style="text-align: center">
       <mat-card-title>{{workout.name}}</mat-card-title>
-      <h3>Exercises:</h3>
+      <h4>Time <span style="color: #007bff">{{workout.time}}</span></h4>
+      </div>
+<!--      <h3>Exercises:</h3>-->
       <div class="exercises">
         <div *ngIf="workout.exercises">
           <div *ngFor="let exercise of workout.exercises">
@@ -12,14 +15,14 @@
               <table class="table">
                 <tr>
                   <th>Set</th>
-                  <th>KG</th>
                   <th>Reps</th>
+                  <th>KG</th>
                   <th></th>
                 </tr>
                 <tr *ngFor="let set of exercise.sets; let i = index">
                   <td>{{i + 1}}</td>
-                  <td>{{set.weight}}</td>
                   <td>{{set.reps}}</td>
+                  <td>{{set.weight}}</td>
                   <td>
                     <button mat-raised-button color=warn (click)="deleteSet(exercise.id, set.id)">
                       <mat-icon>delete</mat-icon>
