@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .workoutList {
@@ -14,7 +14,6 @@
 }
 
 .workout {
-  margin: 10px;
 }
 
 .message {
