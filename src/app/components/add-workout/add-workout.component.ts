@@ -21,6 +21,8 @@ export class AddWorkoutComponent implements OnInit {
 
   workoutTemplates: WorkoutTemplate[] | undefined;
 
+  workoutId: number | undefined
+
   constructor(
     private workoutService: WorkoutService,
     private formBuilder: FormBuilder,
@@ -42,14 +44,11 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   onTemplateSubmit() {
-
     this.workoutService.startWorkoutFromTemplate(this.chooseTemplateForm.value.name).subscribe(res => {
-      console.log("Start from template" + res)
+      console.log("Workout ID: " + res)
+      this.workoutId = res;
+      this.router.navigate(['session/', this.workoutId])
     })
-    this.workoutService.getWorkoutById(this.chooseTemplateForm.value.name).subscribe(res => {
-      console.log("Get workout by id" + res)
-    });
-    this.router.navigate(['session/', this.chooseTemplateForm.value.name])
   }
 
   getAllWorkoutTemplates() {

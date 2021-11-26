@@ -71,6 +71,7 @@ export class WorkoutSessionComponent implements OnInit {
       this.workoutService.saveTimeForWorkout(this.workoutId, this.time).subscribe(res => {
         console.log(res)
       })
+      this.router.navigate(['workouts'])
     }
   }
 }

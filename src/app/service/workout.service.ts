@@ -22,7 +22,7 @@ export class WorkoutService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa('sehawa2511@gyn5.com:qwerty')
+      'Authorization': 'Basic ' + btoa('faxojaw117@keagenan.com:qwerty')
     })
   };
 
@@ -87,8 +87,8 @@ export class WorkoutService {
       )
   }
 
-  startWorkoutFromTemplate(workoutTemplateId: String): Observable<Workout> {
-    return <Observable<Workout>> this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
+  startWorkoutFromTemplate(workoutTemplateId: String): Observable<number> {
+    return <Observable<number>> this.http.post(`${this.baseUrl}/workouts/addFromTemplate/${workoutTemplateId}`,'',this.httpOptions)
   }
 
   saveTimeForWorkout(workoutId: number | undefined, time: String) {

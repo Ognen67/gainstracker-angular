@@ -1,8 +1,11 @@
 <div class="container">
+  <div class="workoutList" *ngIf="workoutList; else message">
   <h1 class="workoutListTitle">Workout List</h1>
-  <div class="workoutList" *ngIf="workoutList">
-    <div *ngFor="let workout of workoutList">
+    <div class="workout" *ngFor="let workout of workoutList">
       <workout class="workout" [workout]="workout" (refresh)="this.refresh()"></workout>
     </div>
   </div>
+  <ng-template #message>
+    <h1 class="message">No workouts yet, start working out!</h1>
+  </ng-template>
 </div>

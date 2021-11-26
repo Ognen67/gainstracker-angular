@@ -1,16 +1,23 @@
 .workoutListTitle {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  color: white;
+  width: 100%;
   padding: 20px;
 }
 
 .workoutList {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.container {
-  /*background-color: #2A2B2A;*/
+.workout {
+  margin: 10px;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
 }
